@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Evantine Apparel — contemporary clothing, objects, and essentials by Evantine.">
+  <meta name="description" content="Evantine Apparel — contemporary clothing, objects, and everyday essentials from New York.">
   <meta name="theme-color" content="#f3f1eb">
   <link rel="canonical" href="https://evantineapparel.com/">
   <title>Evantine Apparel — Wear Your Story</title>
@@ -12,12 +12,16 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">EVANTINE APPAREL / COLLECTION 001 <span>NEW YORK — WORLDWIDE</span></div>
+
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="Evantine Apparel home">EVANTINE</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Primary">
-      <a href="#shop">Shop</a><a href="#collections">Collections</a><a href="#story">Story</a>
-      <button class="bag-button" type="button" aria-label="Open shopping bag">Bag <span id="bagCount">0</span></button>
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#story">Story</a>
+      <button class="bag-button" type="button" aria-controls="bagPanel" aria-expanded="false">Bag <span id="bagCount">0</span></button>
     </nav>
   </header>
 
@@ -27,32 +31,66 @@
         <p class="eyebrow">EVANTINE APPAREL / 001</p>
         <h1 id="hero-title">Wear your<br><em>story.</em></h1>
         <p class="hero-text">Clothing and objects for people who move through the world with intention.</p>
-        <a class="button button-dark" href="#shop">Explore the collection</a>
+        <a class="button button-dark" href="#shop">Explore the collection <span>↘</span></a>
       </div>
-      <div class="hero-art" aria-label="Editorial fashion image placeholder">
+      <div class="hero-art" role="img" aria-label="Abstract Evantine editorial composition">
+        <div class="art-ring"></div>
         <div class="art-note">EVANTINE<br>STUDIO<br>NYC</div>
         <span>01 / 01</span>
       </div>
     </section>
 
     <section id="shop" class="section shop" aria-labelledby="shop-title">
-      <div class="section-head"><div><p class="eyebrow">SELECTED PIECES</p><h2 id="shop-title">The first collection.</h2></div><p>01—04</p></div>
+      <div class="section-head">
+        <div><p class="eyebrow">SELECTED PIECES</p><h2 id="shop-title">The first collection.</h2></div>
+        <p>01—04</p>
+      </div>
+      <div class="shop-toolbar" aria-label="Product filters">
+        <div class="filter-group">
+          <button class="filter active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="apparel">Apparel</button>
+          <button class="filter" type="button" data-filter="objects">Objects</button>
+        </div>
+        <p id="resultCount">4 pieces</p>
+      </div>
       <div class="product-grid" id="productGrid"></div>
     </section>
 
     <section id="collections" class="manifesto">
-      <p class="eyebrow">EVANTINE / OBJECTS / CLOTHING</p>
-      <blockquote>“Make something that feels like you.”</blockquote>
+      <div class="manifesto-top"><p class="eyebrow">EVANTINE / OBJECTS / CLOTHING</p><span>EST. 2016</span></div>
+      <blockquote>Make something<br>that feels like <em>you.</em></blockquote>
       <p>Designed between city streets, open air, late nights, and whatever comes next.</p>
     </section>
 
     <section id="story" class="story section">
       <div><p class="eyebrow">THE STORY</p><h2>Built to be lived in.</h2></div>
-      <div class="story-copy"><p>Evantine is a creative world expressed through clothing, music, movement, and objects. The apparel line brings that same restless energy into pieces made for everyday life.</p><a class="text-link" href="mailto:hello@evantine.com">Talk to us →</a></div>
+      <div class="story-copy">
+        <p>Evantine is a creative world expressed through clothing, music, movement, and objects. The apparel line brings that same restless energy into pieces made for everyday life.</p>
+        <p class="story-note">No uniform. No rules. Just pieces worth keeping.</p>
+        <a class="text-link" href="#shop">Explore pieces →</a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer"><span>© 2026 EVANTINE</span><span>NEW YORK / WORLDWIDE</span></footer>
+
+  <aside id="bagPanel" class="bag-panel" aria-hidden="true" aria-labelledby="bagTitle">
+    <div class="bag-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="bagTitle">Bag</h2></div><button id="bagClose" class="close-button" type="button" aria-label="Close shopping bag">×</button></div>
+    <div id="bagItems" class="bag-items"></div>
+    <div class="bag-foot"><div><span>Subtotal</span><strong id="bagTotal">$0</strong></div><button class="button button-dark checkout-button" type="button" disabled>Checkout <small>Coming soon</small></button></div>
+  </aside>
+  <div id="overlay" class="overlay" hidden></div>
+  <div id="productModal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-art" id="modalArt"></div>
+    <div class="modal-content">
+      <button id="modalClose" class="close-button" type="button" aria-label="Close product details">×</button>
+      <p class="eyebrow" id="modalCategory"></p>
+      <h2 id="modalTitle"></h2>
+      <p id="modalMeta" class="modal-meta"></p>
+      <p id="modalDescription"></p>
+      <button id="modalAdd" class="button button-dark" type="button">Add to bag</button>
+    </div>
+  </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
