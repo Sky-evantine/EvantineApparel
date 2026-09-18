@@ -67,3 +67,9 @@ body{background:var(--paper);color:var(--ink);overflow-x:hidden}
 .toast{letter-spacing:.06em;text-transform:uppercase}
 @media(max-width:800px){.announcement{height:24px}.hero{min-height:auto;padding-top:34px}.hero-art{min-height:112vw;order:-1}.hero h1{font-size:clamp(62px,17vw,100px)}.hero-text{margin-top:24px}.shop{padding-top:90px}.section-head h2{font-size:clamp(48px,13vw,82px)}.manifesto blockquote{font-size:clamp(58px,15vw,100px)}.product-card:hover{transform:none}.site-header{background:rgba(243,241,235,.94)}}
 @media(prefers-reduced-motion:no-preference){.hero-art .art-ring{animation:evantine-drift 14s ease-in-out infinite alternate}.hero-art:before{animation:evantine-orbit 18s ease-in-out infinite alternate}@keyframes evantine-drift{from{transform:translate3d(-2%,1%,0) rotate(-8deg)}to{transform:translate3d(2%,-2%,0) rotate(8deg)}}@keyframes evantine-orbit{from{transform:rotate(-7deg) scale(.98)}to{transform:rotate(5deg) scale(1.02)}}}
+
+/* Scroll choreography */
+.reveal-on-scroll{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal-on-scroll.is-visible{opacity:1;transform:none}
+.product-card:nth-child(2){transition-delay:.06s}.product-card:nth-child(3){transition-delay:.12s}.product-card:nth-child(4){transition-delay:.18s}
+@media(prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none;transition:none}}
