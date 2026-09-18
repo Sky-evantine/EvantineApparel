@@ -17,7 +17,7 @@ function addToBag(product){const existing=bag.find(item=>item.no===product.no);i
 renderProducts();updateBag();
 function setActiveNav(){const path=location.pathname.split("/").pop()||"index.html";document.querySelectorAll(".site-nav a").forEach(a=>{const href=a.getAttribute("href")||"";const target=href.split("#")[0].split("/").pop();if(target===path){a.setAttribute("aria-current","page")}else{a.removeAttribute("aria-current")}})}
 setActiveNav();
-document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));button.classList.add("active");renderProducts(button.dataset.filter)}));
+document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false")});button.classList.add("active");button.setAttribute("aria-pressed","true");renderProducts(button.dataset.filter)}));
 if(grid)grid.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.preventDefault();const product=products.find(p=>p.no===add.dataset.add);if(product)addToBag(product);}});
 if(modalAdd)modalAdd.addEventListener("click",()=>{if(selected){addToBag(selected);closeOverlays();}});
 if(bagItems)bagItems.addEventListener("click",e=>{const remove=e.target.closest("[data-remove]");if(!remove)return;bag=bag.filter(item=>item.no!==remove.dataset.remove);updateBag();});
