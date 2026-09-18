@@ -39,6 +39,12 @@ document.querySelectorAll(".filter").forEach(button=>button.addEventListener("cl
 if(grid)grid.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.preventDefault();const product=products.find(p=>p.no===add.dataset.add);if(product)addToBag(product);}});
 if(modalAdd)modalAdd.addEventListener("click",()=>{if(selected){addToBag(selected);closeOverlays();}});
 if(bagItems)bagItems.addEventListener("click",e=>{const remove=e.target.closest("[data-remove]");if(!remove)return;bag=bag.filter(item=>item.no!==remove.dataset.remove);updateBag();});
+document.querySelectorAll(".checkout-button").forEach(button=>button.addEventListener("click",()=>{
+  if(!bag.length){showToast("Your bag is empty");return;}
+  const lines=bag.filter(item=>item.variantId).map(item=>item.variantId+":"+item.qty);
+  if(lines.length) location.href=SHOPIFY_STORE+"/cart/"+lines.join(",");
+  else showToast("Add a Shopify product to checkout");
+}));
 if(bagButton)bagButton.addEventListener("click",openBag);if(bagClose)bagClose.addEventListener("click",closeOverlays);if(modalClose)modalClose.addEventListener("click",closeOverlays);if(overlay)overlay.addEventListener("click",closeOverlays);
 if(menu)menu.addEventListener("click",()=>{const open=menu.getAttribute("aria-expanded")==="true";menu.setAttribute("aria-expanded",String(!open));if(nav)nav.classList.toggle("open",!open)});
 if(nav)nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{if(menu)menu.setAttribute("aria-expanded","false");nav.classList.remove("open")}));
