@@ -1,8 +1,10 @@
-const products=[
+const SHOPIFY_STORE="https://1bmwgi-pw.myshopify.com";
+const LOCAL_PRODUCTS=[
 {name:"EVANTINE TEE 001",meta:"Heavyweight cotton · $48",price:48,no:"01",type:"apparel",slug:"evantine-tee-001",description:"A substantial everyday tee designed as the starting point for Collection 001.",tilt:"7deg"},
 {name:"STUDIO HOODIE 001",meta:"Brushed fleece · $96",price:96,no:"02",type:"apparel",slug:"studio-hoodie-001",description:"A soft, structured layer for cold walks, late nights, and everywhere between.",tilt:"-8deg"},
 {name:"EVERYDAY CAP 001",meta:"Cotton twill · $38",price:38,no:"03",type:"objects",slug:"everyday-cap-001",description:"An understated everyday cap with an easy silhouette and studio attitude.",tilt:"12deg"},
 {name:"EVANTINE TOTE 001",meta:"Heavy canvas · $42",price:42,no:"04",type:"objects",slug:"evantine-tote-001",description:"A durable carry-all for the things that follow you through the day.",tilt:"-6deg"}];
+let products=[...LOCAL_PRODUCTS];
 const $=s=>document.querySelector(s),grid=$("#productGrid"),resultCount=$("#resultCount"),bagCount=$("#bagCount"),toast=$("#toast"),menu=$(".menu-toggle"),nav=$("#site-nav"),bagPanel=$("#bagPanel"),bagItems=$("#bagItems"),bagTotal=$("#bagTotal"),bagButton=$(".bag-button"),bagClose=$("#bagClose"),overlay=$("#overlay"),modal=$("#productModal"),modalClose=$("#modalClose"),modalAdd=$("#modalAdd");
 let bag=[];try{bag=JSON.parse(localStorage.getItem("evantineBag")||"[]");if(!Array.isArray(bag))bag=[];}catch{bag=[]}
 let selected=null;
@@ -14,7 +16,23 @@ function closeOverlays(){if(bagPanel){bagPanel.classList.remove("open");bagPanel
 function openBag(){if(!bagPanel||!overlay)return;bagPanel.classList.add("open");bagPanel.setAttribute("aria-hidden","false");if(bagButton)bagButton.setAttribute("aria-expanded","true");overlay.hidden=false;document.body.style.overflow="hidden";if(bagClose)bagClose.focus();}
 function openProduct(product){if(!modal)return;selected=product;$("#modalCategory").textContent=product.type+" / collection 001";$("#modalTitle").textContent=product.name;$("#modalMeta").textContent=product.meta;$("#modalDescription").textContent=product.description;modal.hidden=false;if(overlay)overlay.hidden=false;document.body.style.overflow="hidden";if(modalClose)modalClose.focus();}
 function addToBag(product){const existing=bag.find(item=>item.no===product.no);if(existing)existing.qty++;else bag.push({...product,qty:1});updateBag();showToast(product.name+" added to bag");}
-renderProducts();updateBag();
+async function loadShopifyProducts(){
+  try{
+    const response=await fetch(SHOPIFY_STORE+"/products.json?limit=50",{headers:{Accept:"application/json"}});
+    if(!response.ok) throw new Error("Shopify products unavailable");
+    const data=await response.json();
+    if(Array.isArray(data.products)&&data.products.length){
+      products=data.products.map((p,i)=>{
+        const v=p.variants?.[0]||{};
+        const image=p.images?.[0]?.src||"";
+        return {name:p.title,meta:(p.product_type||"Apparel")+" · "+money(Number(v.price||0)),price:Number(v.price||0),no:String(i+1).padStart(2,"0"),type:/cap|tote|bag|object|accessor/i.test((p.product_type||"")+" "+p.title)?"objects":"apparel",slug:p.handle,description:(p.body_html||"").replace(/<[^>]*>/g," ").replace(/\\s+/g," ").trim()||"Evantine Apparel piece.",tilt:"0deg",shopifyId:p.id,variantId:v.id,image};
+      });
+    }
+  }catch(error){ console.warn("Shopify integration fallback:",error); }
+  renderProducts();updateBag();window.dispatchEvent(new CustomEvent("evantine:products-ready"));
+}
+window.evProductReady=loadShopifyProducts();
+
 function setActiveNav(){const path=location.pathname.split("/").pop()||"index.html";document.querySelectorAll(".site-nav a").forEach(a=>{const href=a.getAttribute("href")||"";const target=href.split("#")[0].split("/").pop();if(target===path){a.setAttribute("aria-current","page")}else{a.removeAttribute("aria-current")}})}
 setActiveNav();
 document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false")});button.classList.add("active");button.setAttribute("aria-pressed","true");renderProducts(button.dataset.filter)}));
