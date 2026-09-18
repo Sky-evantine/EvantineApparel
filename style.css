@@ -120,3 +120,16 @@ body{background:var(--paper);color:var(--ink);overflow-x:hidden}
 @keyframes collection-mark-drift{from{transform:rotate(-3deg) scale(.98)}to{transform:rotate(3deg) scale(1.03)}}
 @media(max-width:800px){.collection-stage{min-height:125vw;margin-top:50px;padding:24px;grid-template-columns:1fr;align-items:end}.collection-stage-mark{width:58vw;right:50%;top:40%;transform:translate(50%,-50%)}.collection-stage-copy{grid-column:auto}.collection-stage-copy h2{font-size:clamp(48px,14vw,82px)}.collection-stage-meta{left:24px;right:auto;bottom:24px;align-items:flex-start}.shop-page>.product-grid:before{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){.collection-stage-mark img{animation:none}}
+
+
+/* Modeling portfolio */
+.portfolio-section{border-top:1px solid var(--line);padding-top:clamp(80px,11vw,150px);padding-bottom:clamp(90px,13vw,180px)}
+.portfolio-label{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:clamp(45px,7vw,90px)}
+.portfolio-label>span{font-size:7px;letter-spacing:.16em;color:var(--muted)}
+.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:10%;align-items:end}
+.portfolio-grid h2{font-size:clamp(52px,7vw,112px);line-height:.84;letter-spacing:-.07em;font-weight:500;margin:0}
+.portfolio-grid h2 em{font-family:var(--serif);font-weight:400}
+.portfolio-copy{max-width:480px;padding-bottom:4px}
+.portfolio-copy p{font-size:clamp(18px,2vw,28px);line-height:1.15;margin:0 0 34px}
+.portfolio-copy .button{gap:28px}
+@media(max-width:800px){.portfolio-label{align-items:flex-start;flex-direction:column;gap:10px}.portfolio-grid{grid-template-columns:1fr;gap:45px}.portfolio-grid h2{font-size:clamp(52px,14vw,86px)}.portfolio-copy{max-width:540px}}
