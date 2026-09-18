@@ -14,6 +14,8 @@ function openBag(){if(!bagPanel||!overlay)return;bagPanel.classList.add("open");
 function openProduct(product){if(!modal)return;selected=product;$("#modalCategory").textContent=product.type+" / collection 001";$("#modalTitle").textContent=product.name;$("#modalMeta").textContent=product.meta;$("#modalDescription").textContent=product.description;modal.hidden=false;if(overlay)overlay.hidden=false;document.body.style.overflow="hidden";if(modalClose)modalClose.focus();}
 function addToBag(product){const existing=bag.find(item=>item.no===product.no);if(existing)existing.qty++;else bag.push({...product,qty:1});updateBag();showToast(`${product.name} added to bag`);}
 renderProducts();updateBag();
+function setActiveNav(){const path=location.pathname.split("/").pop()||"index.html";document.querySelectorAll(".site-nav a").forEach(a=>{const href=a.getAttribute("href")||"";const target=href.split("#")[0].split("/").pop();if(target===path){a.setAttribute("aria-current","page")}else{a.removeAttribute("aria-current")}})}
+setActiveNav();
 document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));button.classList.add("active");renderProducts(button.dataset.filter)}));
 if(grid)grid.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.preventDefault();const product=products.find(p=>p.no===add.dataset.add);if(product)addToBag(product);}});
 if(modalAdd)modalAdd.addEventListener("click",()=>{if(selected){addToBag(selected);closeOverlays();}});
