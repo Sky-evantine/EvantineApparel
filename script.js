@@ -1,0 +1,7 @@
+const products=[{name:"EVANTINE TEE 001",meta:"Heavyweight cotton · $48",no:"01"},{name:"STUDIO HOODIE 001",meta:"Brushed fleece · $96",no:"02"},{name:"EVERYDAY CAP 001",meta:"Cotton twill · $38",no:"03"},{name:"EVANTINE TOTE 001",meta:"Canvas · $42",no:"04"}];
+const grid=document.querySelector("#productGrid"),bagCount=document.querySelector("#bagCount"),toast=document.querySelector("#toast"),menu=document.querySelector(".menu-toggle"),nav=document.querySelector("#site-nav");
+grid.innerHTML=products.map((p,i)=>`<button class="product-card" type="button" data-name="${p.name}"><span class="product-image"><span class="product-no">${p.no}</span></span><span class="product-name">${p.name}</span><span class="product-meta">${p.meta}</span></button>`).join("");
+let count=0;
+grid.addEventListener("click",e=>{const card=e.target.closest(".product-card");if(!card)return;count++;bagCount.textContent=count;toast.textContent=`${card.dataset.name} added to bag · demo`;toast.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2200)});
+menu.addEventListener("click",()=>{const open=menu.getAttribute("aria-expanded")==="true";menu.setAttribute("aria-expanded",String(!open));nav.classList.toggle("open",!open)});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menu.setAttribute("aria-expanded","false");nav.classList.remove("open")}));
