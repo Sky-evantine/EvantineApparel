@@ -99,3 +99,106 @@ body.home-page .site-footer{background:rgba(4,19,10,.84)}
 @media(prefers-reduced-motion:reduce){
   body.home-page:before{background-attachment:scroll}
 }
+
+
+/* Exact landing-page composition from approved Evantine reference */
+@media(min-width:801px){
+  body.home-page .announcement{display:none}
+}
+body.home-page .announcement{display:none}
+body.home-page .site-header{
+  top:0;
+  height:88px;
+  background:rgba(5,18,10,.18);
+  border-bottom:1px solid rgba(230,240,222,.16);
+}
+body.home-page .hero{
+  min-height:100svh;
+  height:100svh;
+  padding:0 var(--pad);
+  background:
+    linear-gradient(180deg,rgba(5,18,10,.08) 0%,rgba(5,18,10,.04) 38%,rgba(3,12,7,.48) 100%),
+    url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-forest-field.png?v=1789782480") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+body.home-page .hero:before{display:none}
+body.home-page .hero-copy{
+  transform:translateY(7%);
+}
+body.home-page .hero-copy .eyebrow{
+  margin-bottom:34px;
+  font-size:clamp(7px,.72vw,10px);
+  letter-spacing:.36em;
+  color:rgba(232,240,226,.78);
+}
+body.home-page .hero h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(76px,10vw,154px);
+  font-weight:400;
+  letter-spacing:.075em;
+  line-height:.9;
+  margin:0 0 24px;
+  text-shadow:0 3px 25px rgba(0,0,0,.28);
+}
+body.home-page .hero-text{
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-size:clamp(19px,2vw,30px);
+  letter-spacing:.08em;
+  color:rgba(238,243,233,.80);
+  margin:0 0 42px;
+}
+body.home-page .hero .button{
+  min-width:238px;
+  padding:18px 34px;
+  border-radius:999px;
+  background:rgba(5,20,11,.08);
+  border:1px solid rgba(224,237,215,.76);
+  color:#eef3e9;
+  font-size:9px;
+  letter-spacing:.28em;
+}
+body.home-page .hero .button span{font-size:14px;letter-spacing:0}
+body.home-page .hero .button:hover{
+  transform:translateY(-2px);
+  background:rgba(231,240,224,.88);
+  color:#092113;
+}
+@media(max-width:800px){
+  body.home-page .site-header{
+    top:0;
+    height:88px;
+    padding:0 38px;
+    background:rgba(5,18,10,.16);
+  }
+  body.home-page .hero{
+    min-height:100svh;
+    height:100svh;
+    padding:88px 26px 45px;
+    background-position:center center;
+  }
+  body.home-page .hero-copy{transform:translateY(8%)}
+  body.home-page .hero-copy .eyebrow{
+    margin-bottom:30px;
+    font-size:7px;
+    letter-spacing:.31em;
+    line-height:1.8;
+    max-width:390px;
+  }
+  body.home-page .hero h1{
+    font-size:clamp(57px,13.7vw,98px);
+    letter-spacing:.065em;
+    margin-bottom:22px;
+  }
+  body.home-page .hero-text{
+    font-size:21px;
+    letter-spacing:.055em;
+    margin-bottom:39px;
+  }
+  body.home-page .hero .button{
+    min-width:242px;
+    padding:17px 30px;
+  }
+}
