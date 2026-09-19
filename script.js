@@ -50,3 +50,22 @@ if(menu)menu.addEventListener("click",()=>{const open=menu.getAttribute("aria-ex
 if(nav)nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{if(menu)menu.setAttribute("aria-expanded","false");nav.classList.remove("open")}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeOverlays();});
 if("IntersectionObserver" in window&&matchMedia("(prefers-reduced-motion: no-preference)").matches){const revealTargets=document.querySelectorAll(".hero-copy,.hero-art,.shop .section-head,.product-card,.manifesto,.story,.journal-card,.journal-end,.product-detail");revealTargets.forEach(el=>el.classList.add("reveal-on-scroll"));const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:"0px 0px -8% 0px"});revealTargets.forEach(el=>observer.observe(el));}
+
+
+/* Cinematic section transitions */
+if("IntersectionObserver" in window && matchMedia("(prefers-reduced-motion: no-preference)").matches){
+  const sections=[...document.querySelectorAll("body.home-page main>section, body.home-page>footer")];
+  sections.forEach((section,index)=>{
+    section.classList.add("section-enter");
+    if(index===0) section.classList.add("section-active");
+  });
+  const sectionObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && entry.intersectionRatio>=.18){
+        entry.target.classList.add("section-active");
+        entry.target.classList.remove("section-enter");
+      }
+    });
+  },{threshold:[.18,.45,.7],rootMargin:"-4% 0px -4% 0px"});
+  sections.forEach(section=>sectionObserver.observe(section));
+}
