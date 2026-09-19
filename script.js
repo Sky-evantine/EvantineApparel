@@ -69,3 +69,30 @@ if("IntersectionObserver" in window && matchMedia("(prefers-reduced-motion: no-p
   },{threshold:[.18,.45,.7],rootMargin:"-4% 0px -4% 0px"});
   sections.forEach(section=>sectionObserver.observe(section));
 }
+
+
+/* Smooth scroll choreography with lightweight parallax */
+if(matchMedia("(prefers-reduced-motion: no-preference)").matches){
+  let ticking=false;
+  const hero=document.querySelector("body.home-page .hero");
+  const onScroll=()=>{
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      const y=window.scrollY||0;
+      if(hero){
+        const shift=Math.min(y*.10,55);
+        hero.style.setProperty("--hero-shift",shift+"px");
+        const copy=hero.querySelector(".hero-copy");
+        if(copy){
+          const fade=Math.max(.72,1-y/900);
+          copy.style.opacity=String(fade);
+          copy.style.transform="translate3d(0,"+(Math.min(y*.045,24))+"px,0)";
+        }
+      }
+      ticking=false;
+    });
+  };
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+}
