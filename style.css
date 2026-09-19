@@ -168,3 +168,15 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradie
 body:before{background-position:center center;filter:saturate(.88) contrast(.98) brightness(.82)}
 .hero-photo>img{filter:saturate(.88) contrast(.98) brightness(.9)}
 .editorial-strip figure img{filter:saturate(.9) contrast(.98) brightness(.94)}
+
+
+/* Calming animated homepage wallpaper — wavy grass */
+.home-page{position:relative;background:#0b120d}
+.home-page:before{content:"";position:fixed;inset:0;z-index:-2;background-image:url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-wavy-grass.webp?v=1789775464");background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.02);pointer-events:none}
+.home-page:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,14,10,.18),rgba(8,14,10,.28) 48%,rgba(8,14,10,.42));pointer-events:none}
+.home-page .site-header{background:rgba(247,245,239,.62)}
+.home-page .hero,.home-page .shop,.home-page .story,.home-page .portfolio-section{background:rgba(247,245,239,.64)}
+.home-page .editorial-strip{background:rgba(223,227,220,.76)}
+.home-page .manifesto{background:rgba(17,17,17,.84)}
+.home-page .site-footer{background:rgba(247,245,239,.66)}
+@media(prefers-reduced-motion:reduce){.home-page:before{background-image:url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-wavy-grass.webp?v=1789775464");background-attachment:scroll}}
