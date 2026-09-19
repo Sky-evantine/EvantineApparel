@@ -202,3 +202,44 @@ body.home-page .hero .button:hover{
     padding:17px 30px;
   }
 }
+
+
+/* Smooth cinematic section-to-section scrolling */
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+  body.home-page main>section,
+  body.home-page>footer{
+    scroll-snap-align:start;
+    scroll-snap-stop:normal;
+  }
+  body.home-page main>section:not(.hero){
+    transition:opacity .75s ease,transform .85s cubic-bezier(.2,.7,.2,1);
+  }
+  body.home-page main>section.section-enter{
+    opacity:.42;
+    transform:translateY(18px);
+  }
+  body.home-page main>section.section-active{
+    opacity:1;
+    transform:none;
+  }
+  body.home-page .hero{
+    transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  body.home-page .hero .hero-copy{
+    transition:opacity .8s ease,transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  body.home-page .hero:not(.section-active) .hero-copy{
+    opacity:.82;
+    transform:translateY(10%);
+  }
+}
+@media (max-width:800px) and (prefers-reduced-motion:no-preference){
+  html{scroll-snap-type:y proximity}
+  body.home-page main>section{
+    scroll-margin-top:0;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-snap-type:none}
+}
