@@ -2,49 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta id="metaDescription" name="description" content="Evantine Apparel Collection 001 product detail.">
-<meta name="theme-color" content="#f3f1eb">
-<link rel="canonical" id="canonicalUrl" href="https://evantineapparel.com/product.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="product">
-<meta property="og:site_name" content="Evantine Apparel">
-<meta property="og:title" id="ogTitle" content="Evantine Apparel — Collection 001">
-<meta property="og:description" id="ogDescription" content="Evantine Apparel Collection 001 product detail.">
-<meta property="og:url" id="ogUrl" content="https://evantineapparel.com/product.html">
-<link rel="stylesheet" href="style.css">
-<title>Evantine Product — Collection 001</title>
+<meta id="metaDescription" name="description" content="Evantine Apparel Collection 001 product detail."><meta name="theme-color" content="#f3f1eb">
+<link rel="canonical" id="canonicalUrl" href="https://evantineapparel.com/product.html"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="product"><meta property="og:site_name" content="Evantine Apparel"><meta property="og:title" id="ogTitle" content="Evantine Apparel — Collection 001"><meta property="og:description" id="ogDescription" content="Evantine Apparel Collection 001 product detail."><meta property="og:url" id="ogUrl" content="https://evantineapparel.com/product.html">
+<link rel="stylesheet" href="style.css"><title>Evantine Product — Collection 001</title>
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="announcement">EVANTINE APPAREL / COLLECTION 001 <span>NEW YORK — WORLDWIDE</span></div>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="announcement">EVANTINE APPAREL / COLLECTION 001 <span>NEW YORK — WORLDWIDE</span></div>
 <header class="site-header"><a class="wordmark" href="/" aria-label="Evantine Apparel home">EVANTINE</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" class="site-nav" aria-label="Primary"><a href="shop.html">Shop</a><a href="/#collections">Collections</a><a href="journal.html">Journal</a><a href="about.html">Story</a><button class="bag-button" type="button" aria-controls="bagPanel" aria-expanded="false">Bag <span id="bagCount">0</span></button></nav></header>
-<main id="main"><section class="product-detail section">
-<div class="detail-art" id="detailArt"><img class="detail-brand-mark" src="brand-mark.svg" alt="" aria-hidden="true"><span id="detailNo"></span><span class="garment" aria-hidden="true"></span></div>
-<div class="detail-copy"><p class="eyebrow" id="detailCategory"></p><h1 id="detailTitle">Collection 001</h1><p id="detailMeta" class="detail-price"></p><p id="detailDescription"></p><div class="detail-lines"><div><span>Designed</span><strong>New York</strong></div><div><span>Collection</span><strong>001 / 2026</strong></div><div><span>Status</span><strong>Coming soon</strong></div></div><button id="detailAdd" class="button button-dark" type="button">Add to bag</button><a class="back-link" href="shop.html">← Back to collection</a></div>
-</section></main>
+<main id="main"><section class="product-detail section"><div class="detail-art" id="detailArt"><img class="detail-brand-mark" src="brand-mark.svg" alt="" aria-hidden="true"><span id="detailNo"></span><span class="garment" aria-hidden="true"></span></div><div class="detail-copy"><p class="eyebrow" id="detailCategory"></p><h1 id="detailTitle">Collection 001</h1><p id="detailMeta" class="detail-price"></p><p id="detailDescription"></p><div class="detail-lines"><div><span>Designed</span><strong>New York</strong></div><div><span>Collection</span><strong>001 / 2026</strong></div><div><span>Status</span><strong>Collection 001</strong></div></div><button id="detailAdd" class="button button-dark" type="button">Add to bag</button><a class="back-link" href="shop.html">← Back to collection</a></div></section></main>
 <footer class="site-footer"><span>© 2026 EVANTINE</span><span>NEW YORK / WORLDWIDE</span></footer>
-<aside id="bagPanel" class="bag-panel" aria-hidden="true" aria-labelledby="bagTitle"><div class="bag-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="bagTitle">Bag</h2></div><button id="bagClose" class="close-button" type="button" aria-label="Close shopping bag">×</button></div><div id="bagItems" class="bag-items"></div><div class="bag-foot"><div><span>Subtotal</span><strong id="bagTotal">$0</strong></div><button class="button button-dark checkout-button" type="button" disabled>Checkout <small>Coming soon</small></button></div></aside>
+<aside id="bagPanel" class="bag-panel" aria-hidden="true" aria-labelledby="bagTitle"><div class="bag-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="bagTitle">Bag</h2></div><button id="bagClose" class="close-button" type="button" aria-label="Close shopping bag">×</button></div><div id="bagItems" class="bag-items"></div><div class="bag-foot"><div><span>Subtotal</span><strong id="bagTotal">$0</strong></div><button class="button button-dark checkout-button" type="button">Checkout</button></div></aside>
 <div id="overlay" class="overlay" hidden></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="script.js"></script>
-<script>
-window.evProductReady.then(()=>{
-const id=new URLSearchParams(location.search).get("id")||"01";
-const product=products.find(p=>p.no===id)||products[0];
-document.title=product.name+" — Evantine Apparel";
-const canonical="https://evantineapparel.com/product.html?id="+product.no;
-document.querySelector("#canonicalUrl").href=canonical;
-document.querySelector("#ogUrl").content=canonical;
-document.querySelector("#metaDescription").content=product.description+" Evantine Apparel Collection 001.";
-document.querySelector("#ogTitle").content=product.name+" — Evantine Apparel";
-document.querySelector("#ogDescription").content=product.description;
-document.querySelector("#detailTitle").textContent=product.name;
-document.querySelector("#detailMeta").textContent=product.meta;
-document.querySelector("#detailCategory").textContent=product.type+" / collection 001";
-document.querySelector("#detailDescription").textContent=product.description;
-document.querySelector("#detailNo").textContent=product.no;
-document.querySelector("#detailArt").classList.add("product-"+product.no);
-document.querySelector("#detailArt .garment").style.setProperty("--tilt",product.tilt);
-document.querySelector("#detailAdd").addEventListener("click",()=>addToBag(product));
-});
-</script>
+<script src="script.js"></script><script>window.evProductReady.then(()=>{const id=new URLSearchParams(location.search).get("id")||"01";const product=products.find(p=>p.no===id)||products[0];document.title=product.name+" — Evantine Apparel";const canonical="https://evantineapparel.com/product.html?id="+product.no;document.querySelector("#canonicalUrl").href=canonical;document.querySelector("#ogUrl").content=canonical;document.querySelector("#metaDescription").content=product.description+" Evantine Apparel Collection 001.";document.querySelector("#ogTitle").content=product.name+" — Evantine Apparel";document.querySelector("#ogDescription").content=product.description;document.querySelector("#detailTitle").textContent=product.name;document.querySelector("#detailMeta").textContent=product.meta;document.querySelector("#detailCategory").textContent=product.type+" / collection 001";document.querySelector("#detailDescription").textContent=product.description;document.querySelector("#detailNo").textContent=product.no;document.querySelector("#detailArt").classList.add("product-"+product.no);document.querySelector("#detailArt .garment").style.setProperty("--tilt",product.tilt);document.querySelector("#detailAdd").addEventListener("click",()=>addToBag(product));});</script>
 </body></html>
