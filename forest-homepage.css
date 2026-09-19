@@ -243,3 +243,96 @@ body.home-page .hero .button:hover{
 @media(prefers-reduced-motion:reduce){
   html{scroll-snap-type:none}
 }
+
+
+/* Premium scroll motion — smooth, restrained, cinematic */
+@media (prefers-reduced-motion:no-preference){
+  html{
+    scroll-behavior:smooth;
+    scroll-snap-type:none;
+  }
+  body.home-page{
+    overscroll-behavior-y:none;
+  }
+  body.home-page main>section,
+  body.home-page>footer{
+    scroll-margin-top:0;
+    will-change:opacity,transform;
+  }
+
+  /* Sections breathe in rather than snapping */
+  body.home-page main>section:not(.hero),
+  body.home-page>footer{
+    opacity:1;
+    transform:none;
+    transition:
+      opacity 900ms cubic-bezier(.22,1,.36,1),
+      transform 1100ms cubic-bezier(.22,1,.36,1);
+  }
+  body.home-page main>section.section-enter{
+    opacity:.72;
+    transform:translate3d(0,28px,0);
+  }
+
+  /* Hero has a slow editorial parallax */
+  body.home-page .hero{
+    overflow:hidden;
+    transform:translate3d(0,0,0);
+  }
+  body.home-page .hero:after{
+    content:"";
+    position:absolute;
+    inset:-8%;
+    z-index:-1;
+    background:inherit;
+    transform:translate3d(0,var(--hero-shift,0px),0) scale(1.04);
+    will-change:transform;
+    pointer-events:none;
+  }
+  body.home-page .hero-copy{
+    will-change:transform,opacity;
+    transition:transform 900ms cubic-bezier(.22,1,.36,1),opacity 700ms ease;
+  }
+
+  /* Existing editorial elements get staggered entrances */
+  body.home-page .product-card,
+  body.home-page .editorial-copy,
+  body.home-page .story-copy,
+  body.home-page .manifesto blockquote,
+  body.home-page .manifesto>p:last-child{
+    will-change:transform,opacity;
+  }
+  body.home-page .product-card{
+    transition:
+      opacity 700ms cubic-bezier(.22,1,.36,1),
+      transform 800ms cubic-bezier(.22,1,.36,1);
+  }
+  body.home-page .product-card.reveal-on-scroll:not(.is-visible){
+    opacity:0;
+    transform:translate3d(0,34px,0);
+  }
+  body.home-page .product-card.reveal-on-scroll.is-visible{
+    opacity:1;
+    transform:translate3d(0,0,0);
+  }
+  body.home-page .product-image{
+    transition:transform 900ms cubic-bezier(.22,1,.36,1),background .5s ease;
+  }
+
+  /* Manifesto gets a slower, deeper reveal */
+  body.home-page .manifesto.reveal-on-scroll:not(.is-visible){
+    opacity:.2;
+    transform:translate3d(0,40px,0);
+  }
+  body.home-page .manifesto.reveal-on-scroll.is-visible{
+    opacity:1;
+    transform:none;
+  }
+
+  /* Mobile: no aggressive parallax */
+  @media(max-width:800px){
+    body.home-page .hero:after{inset:-3%;transform:scale(1.025)}
+    body.home-page .hero-copy{transition-duration:800ms}
+    body.home-page main>section.section-enter{transform:translate3d(0,18px,0)}
+  }
+}
