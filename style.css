@@ -153,8 +153,8 @@ body{background:var(--paper);color:var(--ink);overflow-x:hidden}
 
 /* Living landscape wallpaper — Evantine */
 body{position:relative;background:#0e160f}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-wavy-grass.webp?v=1789775464") center/cover no-repeat;transform:scale(1.02);pointer-events:none}
-body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(247,245,239,.18),rgba(12,20,13,.28) 48%,rgba(12,20,13,.38));pointer-events:none}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/IMG_0114.jpg?v=1789778335") center/cover no-repeat;transform:scale(1.02);pointer-events:none}
+body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,15,12,.16),rgba(8,15,12,.30) 48%,rgba(8,15,12,.46));pointer-events:none}
 .announcement{position:relative;z-index:30;background:rgba(17,17,17,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .site-header{background:rgba(247,245,239,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .hero,.shop,.story,.portfolio-section,.about-hero,.journal-hero{background:rgba(247,245,239,.70);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
@@ -162,3 +162,9 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradie
 .manifesto{background:rgba(17,17,17,.88);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 .site-footer{background:rgba(247,245,239,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 @media(prefers-reduced-motion:reduce){body:before{background-attachment:scroll}}
+
+
+/* Personal landscape set — September 2026 */
+body:before{background-position:center center;filter:saturate(.88) contrast(.98) brightness(.82)}
+.hero-photo>img{filter:saturate(.88) contrast(.98) brightness(.9)}
+.editorial-strip figure img{filter:saturate(.9) contrast(.98) brightness(.94)}
