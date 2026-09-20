@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Evantine Apparel collections — 001, 002, and 003.">
+<title>Collections — Evantine Apparel</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement">EVANTINE APPAREL / COLLECTIONS <span>NEW YORK — WORLDWIDE</span></div>
+<header class="site-header">
+  <a class="wordmark" href="/" aria-label="Evantine Apparel home">EVANTINE</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary">
+    <a href="shop.html">Shop</a>
+    <a href="collections.html" aria-current="page">Collections</a>
+    <a href="journal.html">Journal</a>
+    <a href="about.html">Story</a>
+    <button class="bag-button" type="button" aria-controls="bagPanel" aria-expanded="false">Bag <span id="bagCount">0</span></button>
+  </nav>
+</header>
+<main id="main" class="section collections-page">
+  <div class="section-head"><div><p class="eyebrow">EVANTINE / COLLECTIONS</p><h1>Three chapters.<br><em>Ten pieces each.</em></h1></div><p id="collectionStatus">SHOPIFY</p></div>
+  <p class="collections-intro">Choose a collection to explore. Products are pulled directly from the connected Shopify catalog, so the site stays in sync with the store.</p>
+  <div id="collectionList" class="collection-list" aria-live="polite"></div>
+</main>
+<footer class="site-footer"><span>© 2026 EVANTINE</span><span>NEW YORK / WORLDWIDE</span></footer>
+<aside id="bagPanel" class="bag-panel" aria-hidden="true" aria-labelledby="bagTitle">
+  <div class="bag-head"><div><p class="eyebrow">YOUR SELECTION</p><h2 id="bagTitle">Bag</h2></div><button id="bagClose" class="close-button" type="button" aria-label="Close shopping bag">×</button></div>
+  <div id="bagItems" class="bag-items"></div>
+  <div class="bag-foot"><div><span>Subtotal</span><strong id="bagTotal">$0</strong></div><button class="button button-dark checkout-button" type="button">Checkout</button></div>
+</aside>
+<div id="overlay" class="overlay" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+<script>
+const collectionList=document.getElementById("collectionList");
+const collectionStatus=document.getElementById("collectionStatus");
+const SHOPIFY_COLLECTIONS="https://1bmwgi-pw.myshopify.com";
+const desired=["Evantine001","Evantine002","Evantine003"];
+const fallback=[
+ {name:"Evantine001",handle:"evantine001",description:"The first chapter of the Evantine world."},
+ {name:"Evantine002",handle:"evantine002",description:"The second chapter of the Evantine world."},
+ {name:"Evantine003",handle:"evantine003",description:"The third chapter of the Evantine world."}
+];
+function esc(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]||c))}
+function renderCollections(cols){
+  collectionList.innerHTML=cols.map((c,i)=>{
+    const n=String(i+1).padStart(2,"0");
+    return '<a class="collection-card" href="collection.html?handle='+encodeURIComponent(c.handle||"")+'" data-handle="'+esc(c.handle||"")+'">'+
+      '<span class="collection-card-index">'+n+'</span>'+
+      '<span class="collection-card-mark">EV</span>'+
+      '<span class="collection-card-copy"><span class="eyebrow">EVANTINE</span><strong>'+esc(c.displayName||c.title)+'</strong><span>'+esc(c.description||"Ten-piece collection.")+'</span></span>'+
+      '<span class="collection-card-count">'+(c.count||10)+' PIECES&nbsp; →</span>'+
+    '</a>';
+  }).join("");
+}
+async function loadCollections(){
+  try{
+    const response=await fetch(SHOPIFY_COLLECTIONS+"/collections.json?limit=250",{headers:{Accept:"application/json"}});
+    if(!response.ok) throw new Error("Shopify collections unavailable");
+    const data=await response.json();
+    const found=Array.isArray(data.collections)?data.collections:[];
+    const selected=desired.map((wanted,index)=>{
+      const exact=found.find(c=>String(c.title).replace(/\s+/g,"").toLowerCase()===wanted.toLowerCase());
+      return exact?{title:exact.title,handle:exact.handle,description:exact.body_html?.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim()||"Ten-piece Evantine collection.",count:10,displayName:wanted}:{title:wanted,handle:wanted.toLowerCase(),description:fallback[index].description,count:10,displayName:wanted};
+    });
+    renderCollections(selected);
+    collectionStatus.textContent="CONNECTED / SHOPIFY";
+  }catch(error){
+    renderCollections(fallback.map((c)=>({...c,count:10,displayName:c.name})));
+    collectionStatus.textContent="SHOPIFY OFFLINE / FALLBACK";
+    console.warn(error);
+  }
+}
+loadCollections();
+</script>
+</body>
+</html>
