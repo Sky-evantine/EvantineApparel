@@ -120,3 +120,21 @@ body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https:/
   100%{opacity:0;transform:translate(calc(-50% + var(--note-drift)),calc(-50% - 34px)) scale(1.12) rotate(calc(var(--note-rotate) + 14deg))}
 }
 @media(max-width:850px){.music-note-trail{display:none}}
+
+
+/* WHITE POINTER GLOW */
+.sky-pointer-glow{
+  position:fixed;
+  left:0;top:0;
+  width:10px;height:10px;
+  margin:-5px 0 0 -5px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 8px rgba(255,255,255,.95),0 0 24px rgba(255,255,255,.42);
+  z-index:10000;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .18s ease,transform .08s linear;
+}
+.sky-pointer-glow.is-visible{opacity:1}
+@media(max-width:850px){.sky-pointer-glow{display:none}}
