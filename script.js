@@ -96,3 +96,23 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeOverlays();});
     setTimeout(function(){note.remove();},900);
   },{passive:true});
 })();
+
+
+/* WHITE POINTER GLOW */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.matchMedia('(pointer: fine)').matches) return;
+  const cursor=document.createElement('span');
+  cursor.className='sky-pointer-glow';
+  cursor.setAttribute('aria-hidden','true');
+  document.body.appendChild(cursor);
+  let x=window.innerWidth/2,y=window.innerHeight/2,tx=x,ty=y;
+  function move(e){tx=e.clientX;ty=e.clientY;cursor.classList.add('is-visible');}
+  document.addEventListener('pointermove',move,{passive:true});
+  function tick(){
+    x+=(tx-x)*.22;y+=(ty-y)*.22;
+    cursor.style.transform='translate3d('+x+'px,'+y+'px,0)';
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
