@@ -70,3 +70,29 @@ if(bagButton)bagButton.addEventListener("click",openBag);if(bagClose)bagClose.ad
 if(menu)menu.addEventListener("click",()=>{const open=menu.getAttribute("aria-expanded")==="true";menu.setAttribute("aria-expanded",String(!open));if(nav)nav.classList.toggle("open",!open);});
 if(nav)nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{if(menu)menu.setAttribute("aria-expanded","false");nav.classList.remove("open");}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeOverlays();});
+
+
+/* SKY EVANTINE / MUSIC NOTE CURSOR TRAIL */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.matchMedia('(pointer: fine)').matches) return;
+  const notes=['♪','♫','♩','♬'];
+  let lastX=-999,lastY=-999,lastTime=0;
+  let index=0;
+  document.addEventListener('pointermove',function(e){
+    const now=performance.now();
+    const dx=e.clientX-lastX,dy=e.clientY-lastY;
+    if(now-lastTime<70 || (dx*dx+dy*dy)<180) return;
+    lastX=e.clientX;lastY=e.clientY;lastTime=now;
+    const note=document.createElement('span');
+    note.className='music-note-trail';
+    note.textContent=notes[index++%notes.length];
+    note.style.left=e.clientX+'px';
+    note.style.top=e.clientY+'px';
+    note.style.setProperty('--note-drift',(index%2?'':'-')+(7+Math.random()*12)+'px');
+    note.style.setProperty('--note-rotate',((Math.random()*30)-15)+'deg');
+    note.style.setProperty('--note-delay',(Math.random()*40)+'ms');
+    document.body.appendChild(note);
+    setTimeout(function(){note.remove();},900);
+  },{passive:true});
+})();
