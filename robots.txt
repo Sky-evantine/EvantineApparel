@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://evantineapparel.com/sitemap.xml
+Sitemap: https://evantinetools.com/sitemap.xml
