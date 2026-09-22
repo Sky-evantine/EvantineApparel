@@ -62,3 +62,32 @@ body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https:/
  .sky-nav{height:64px}.sky-hero-image{inset:64px 0 0}.sky-hero{padding-top:100px}.sky-hero-card{padding:28px 22px;border-radius:22px}.sky-hero h1{font-size:20vw}.sky-hero-meta{bottom:18px}.sky-actions{flex-direction:column;align-items:stretch}.glass-button{justify-content:space-between}.model-images{grid-template-columns:1fr 1fr;min-height:500px}.model-images img:first-child{grid-row:1 / 3}.sky-footer{flex-direction:column;gap:9px}
 }
 @media(prefers-reduced-motion:reduce){.glass-button,.proof-card,.model-images img{transition:none}.glass-sky-page{scroll-behavior:auto}}
+
+
+/* EDITORIAL CONNECTION / ANIMATED BACKDROP */
+.connect-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(7,14,10,.48),rgba(7,14,10,.72)),
+    url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass.webp?v=1790093722") center/cover no-repeat;
+}
+.connect-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.10),transparent 42%);
+  pointer-events:none;
+}
+.connect-section .connect-card{
+  position:relative;
+  z-index:1;
+  background:rgba(15,27,21,.38);
+  border-color:rgba(255,255,255,.24);
+  box-shadow:0 30px 100px rgba(0,0,0,.28);
+}
+@media(prefers-reduced-motion:reduce){
+  .connect-section{background-image:linear-gradient(180deg,rgba(7,14,10,.48),rgba(7,14,10,.72)),url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass.webp?v=1790093722")}
+}
