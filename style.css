@@ -71,7 +71,7 @@ body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https:/
   overflow:hidden;
   background:
     linear-gradient(180deg,rgba(7,14,10,.48),rgba(7,14,10,.72)),
-    url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass.webp?v=1790093722") center/cover no-repeat;
+    url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass-hq.webp?v=1790094045") center/cover no-repeat;
 }
 .connect-section::before{
   content:"";
@@ -89,5 +89,5 @@ body:before{content:"";position:fixed;inset:0;z-index:-2;background:url("https:/
   box-shadow:0 30px 100px rgba(0,0,0,.28);
 }
 @media(prefers-reduced-motion:reduce){
-  .connect-section{background-image:linear-gradient(180deg,rgba(7,14,10,.48),rgba(7,14,10,.72)),url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass.webp?v=1790093722")}
+  .connect-section{background-image:linear-gradient(180deg,rgba(7,14,10,.48),rgba(7,14,10,.72)),url("https://cdn.shopify.com/s/files/1/0810/8507/1396/files/evantine-connection-grass-hq.webp?v=1790094045")}
 }
